@@ -29,37 +29,3 @@ for key,value in answers.items():
 
 print(story)
 
-
-# functional code
-# import re
-
-# def read_story_from_file(file_name):
-#     with open(file_name, 'r') as file:
-#         story = file.read()
-#     return story
-
-# def get_user_input(placeholders):
-#     user_inputs = {}
-#     for placeholder in placeholders:
-#         user_input = input(f"Enter a {placeholder}: ")
-#         user_inputs[placeholder] = user_input
-#     return user_inputs
-
-# def fill_in_story(story, user_inputs):
-#     filled_story = story
-#     for placeholder, value in user_inputs.items():
-#         filled_story = re.sub(r'\[' + placeholder + r'\]', value, filled_story)
-#     return filled_story
-
-# def main():
-#     story_file = 'story.txt'
-#     story = read_story_from_file(story_file)
-    
-#     placeholders = re.findall(r'\[(.*?)\]', story)
-#     user_inputs = get_user_input(placeholders)
-    
-#     filled_story = fill_in_story(story, user_inputs)
-#     print("\nFilled Story:\n" + filled_story)
-
-# if __name__ == "__main__":
-#     main()

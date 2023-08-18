@@ -3,8 +3,3 @@ In the <adjective1> land of <place>, a <animal> was feeling <emotion>. The <anim
 Suddenly, a <character> appeared. 'I will help you find your <object>,' they said.
 
 Together, they journeyed through <terrain> and faced the <weather_condition>. Finally, they found the <object> in a <place2>. The <animal> was so <emotion2> and thanked the <character>. They lived <adverb> ever after.
-
-# This is a Mad Libs story template
-# Feel free to modify and add your own placeholders!
-
-Once upon a time, in a [adjective] land, there lived a [noun]. This [noun] had a dream of [verb -ing] to the [place] in search of [plural noun]. Along the way, they encountered a [adjective] [animal] who offered them [color] [noun]. With their new companion, they continued their journey, facing [adjective] challenges and [verb -ing] through the [terrain]. Finally, they reached the [place] and found the legendary [noun], making their dream come true.
