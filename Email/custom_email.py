@@ -12,7 +12,7 @@ email['to'] = 'abuukarhaaji9@gmail.com'
 email['subject'] = 'Use python to send emails'
 
 # email content 
-email.set_content(html.substitute(name= 'Saalax'), 'html')
+email.set_content(html.substitute(name= 'Saalax'), 'html  ')
 
 # email.set_content(html.substitute({'name': 'Saalax', 'age': 13})) # if the html had mulitple templates 
 
