@@ -20,7 +20,6 @@ with smtplib.SMTP(host='smtp.gmail.com', port=587) as smtp:
     smtp.ehlo() #  establishing a connection  to an SMTP to the server. 
     smtp.starttls()  # connecting securely with the server 
     # connect with the email
-    # PROF-ABDI-PYTHON
     smtp.login('saabirhaaji10@gmail.com', 'ihed bszv fgaa mvfv')
     smtp.send_message(email)
     print('we sent the email')
