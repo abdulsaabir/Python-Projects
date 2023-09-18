@@ -1,0 +1,3 @@
+this is PYthon scripting File input output
+:)
+we are learning something new here today.
