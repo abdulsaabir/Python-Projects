@@ -1,56 +1,80 @@
 import customtkinter as ctk
-root = ctk.CTk()
-import random
-root.geometry('300x300')
+from CTkMessagebox import CTkMessagebox
 
-# # take the data
-# lst = [(1,'Raj','Mumbai',19),
-#        (2,'Aaryan','Pune',18),
-#        (3,'Vaishnavi','Mumbai',20),
-#        (4,'Rachna','Mumbai',21),
-#        (5,'Shubham','Delhi',21)]
+def add_task():
+    task = entry.get()
+    if task:
+        task_label = ctk.CTkLabel(frame, text=task)
+        task_label.grid(row=row_counter, column=0, pady=5, sticky="W")
 
-# # find total number of rows and
-# # columns in list
-# total_rows = len(lst)
-# total_columns = len(lst[0])
+        done_button = ctk.CTkButton(frame, text="Done", command=lambda: mark_done(task_label, done_button, edit_button))
+        done_button.grid(row=row_counter, column=1, padx=5)
 
-# for i in range(total_rows):
-#     for j in range(total_columns):
-#         e= ctk.CTkEntry(root, width=200, fg_color='blue',font=('Arial',16,'bold'))
-#         e.grid(row=i, column=j)
-#         e.insert("0", str(lst[i][j]))
+        edit_button = ctk.CTkButton(frame, text="Edit", command=lambda: edit_task(task_label))
+        edit_button.grid(row=row_counter, column=2, padx=5)
 
-def hideAlldays():
-    if checkbox1.get():
-        for label in day_labels:
-            label.pack_forget()
-    else:  # If the checkbox is unchecked
-        for label in day_labels:
-            label.pack()
+        delete_button = ctk.CTkButton(frame, text="Delete", command=lambda: delete_task(task_label, done_button, edit_button, delete_button))
+        delete_button.grid(row=row_counter, column=3, padx=5)
 
-def hideRandomDay():
-    if checkbox1.get():
-        randomDay= random.randint(0,6)
-        day_labels[randomDay].pack_forget()
+        entry.delete(0, ctk.END)
+        increment_row_counter()
+
     else:
-        for label in day_labels:
-            label.pack()
+        CTkMessagebox(title="Warning Message!", message="Please enter a task.", icon="warning")
 
 
-checkbox1 = ctk.CTkCheckBox(root, text='Hide All Days', command=hideAlldays)
-checkbox1.pack()
-checkbox1 = ctk.CTkCheckBox(root, text='Hide Random Days', command=hideRandomDay)
-checkbox1.pack()
- 
-days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-day_labels = []
-for i in days_of_week:
-    label = ctk.CTkLabel(root,text=i)
-    label.pack()
-    day_labels.append(label)
+def mark_done(label, done_button, edit_button):
+    label.configure(text_color="gray")
+    done_button.configure(state=ctk.DISABLED)
+    edit_button.configure(state=ctk.DISABLED)
 
-  
-# create root window
+def edit_task(label):
+    current_text = label.cget("text")
 
+    dialog = ctk.CTkInputDialog(text=f'Enter new task: ({current_text})', title="Edit Task")
+    new_task = dialog.get_input()  # waits for input
+    print(new_task)
+    if new_task:
+        label.configure(text=new_task)
+    elif new_task == '':
+        CTkMessagebox(title="Warning Message!", message="Please enter a valid task.", icon="warning")
+
+
+def delete_task(label, done_button, edit_button, delete_button):
+
+
+    msg = CTkMessagebox(title="Warning Message!", message="Are you sure you want to delete this task?",icon="warning", option_1="Yes", option_2="No")
+    
+    confirm = msg.get()
+    print(confirm)
+
+    if confirm == 'Yes':
+        label.destroy()
+        done_button.destroy()
+        edit_button.destroy()
+        delete_button.destroy()
+
+def increment_row_counter():
+    global row_counter
+    row_counter += 1
+
+# Create the main window
+root = ctk.CTk()
+root.title("To-Do List")
+
+# Create and place GUI elements
+frame = ctk.CTkFrame(root)
+frame.pack(pady=10)
+
+entry = ctk.CTkEntry(frame, width=300)
+entry.grid(row=0, column=0, padx=5)
+
+add_button = ctk.CTkButton(frame, text="Add Task", command=add_task)
+add_button.grid(row=0, column=1, padx=5)
+
+# Initialize row counter
+row_counter = 1
+
+
+# Run the Tkinter event loop
 root.mainloop()
